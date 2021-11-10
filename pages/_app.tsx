@@ -1,27 +1,22 @@
 import { ApolloProvider } from '@apollo/client';
-import { NextPage } from 'next';
+import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
-import { ReactElement, ReactNode } from 'react';
 
 import client from '../@graphql/apollo-client';
-import { wrapper } from '../store';
+import LayoutDefault from '../components/layouts/default';
 import '../styles/globals.css';
 
-type NextPageWithLayout = NextPage & {
-    getLayout?: (page: ReactElement) => ReactNode;
-};
-
-type AppPropsWithLayout = AppProps & {
-    Component: NextPageWithLayout;
-};
-
-function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-    const getLayout = Component.getLayout ?? ((page) => page);
+export default function MyApp({
+    Component,
+    pageProps: { session, ...pageProps },
+}: AppProps) {
     return (
         <ApolloProvider client={client}>
-            {getLayout(<Component {...pageProps} />)}
+            <SessionProvider session={session} refetchInterval={5 * 60}>
+                <LayoutDefault>
+                    <Component {...pageProps} />
+                </LayoutDefault>
+            </SessionProvider>
         </ApolloProvider>
     );
 }
-
-export default wrapper.withRedux(MyApp);

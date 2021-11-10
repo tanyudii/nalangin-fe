@@ -1,10 +1,12 @@
 /* eslint-disable @next/next/no-page-custom-font */
-import Document, { Html, Head, Main, NextScript } from "next/document";
 
-function MyDocument() {
+/* eslint-disable @next/next/no-document-import-in-page */
+import { Head as HeadComponent, Html, Main, NextScript } from "next/document";
+
+export default function MyDocument() {
   return (
     <Html>
-      <Head>
+      <HeadComponent>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -15,7 +17,7 @@ function MyDocument() {
           href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap"
           rel="stylesheet"
         />
-      </Head>
+      </HeadComponent>
       <body>
         <Main />
         <NextScript />
@@ -23,5 +25,3 @@ function MyDocument() {
     </Html>
   );
 }
-
-export default MyDocument;
