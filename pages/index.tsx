@@ -3,9 +3,9 @@ import { getSession, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import { useCallback, useEffect } from 'react';
 
-import { useMutationAuth } from '../@common/use-mutation.hook';
-import { useQueryAuth } from '../@common/use-query.hook';
-import { CREATE_GROUP } from '../@graphql/mutations/user-group';
+import { useMutationAuth } from '../@common/hooks/use-mutation.hook';
+import { useQueryAuth } from '../@common/hooks/use-query.hook';
+import { CREATE_GROUP } from '../@graphql/mutations/group';
 
 const GROUPS_QUERY = gql`
     query groups {
