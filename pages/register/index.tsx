@@ -1,13 +1,10 @@
 import { useMutation } from '@apollo/client';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { NextPage } from 'next';
-import Image from 'next/image';
-import { ReactElement, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
 import { AUTH_CREATE_OTP, AUTH_REGISTER } from '../../@graphql/mutations/auth';
-import GuestLayout from '../../components/layouts/guest';
 
 interface IRegisterFormData {
     phoneNumber: string;
@@ -21,7 +18,7 @@ const RegisterFormDataValidation = yup.object({
     otp: yup.string(),
 });
 
-function RegisterPage(props: NextPage) {
+export default function RegisterPage() {
     const [
         createOtp,
         {
@@ -174,12 +171,6 @@ function RegisterPage(props: NextPage) {
         </div>
     );
 }
-
-RegisterPage.getLayout = function getLayout(page: ReactElement) {
-    return <GuestLayout title={'Register'}>{page}</GuestLayout>;
-};
-
-export default RegisterPage;
 
 export async function getStaticProps() {
     return {

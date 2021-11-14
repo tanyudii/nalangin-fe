@@ -1,21 +1,17 @@
-import { NextPage } from "next";
-import Head from "next/head";
+import { NextPage } from 'next';
 
-export interface IAuthorizedLayout {
-  title: string;
-}
+import Sidebar from './Sidebar';
 
-const AuthorizedLayout: NextPage<IAuthorizedLayout> = (props) => {
-  const { children, title } = props;
-  return (
-    <>
-      <Head>
-        <title>{title}</title>
-      </Head>
+export interface IAuthorizedLayout {}
 
-      {children}
-    </>
-  );
+const AuthorizedLayout: NextPage<IAuthorizedLayout> = ({ children }) => {
+    return (
+        <>
+            <Sidebar />
+
+            {children}
+        </>
+    );
 };
 
 export default AuthorizedLayout;

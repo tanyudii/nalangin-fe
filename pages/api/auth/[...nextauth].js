@@ -75,7 +75,7 @@ export default NextAuth({
     },
     session: {
         jwt: true,
-        maxAge: 8 * 60 * 60, // 8 hours
+        maxAge: 30 * 24 * 60 * 60, // 30 days
     },
     jwt: {
         signingKey: process.env.NEXTAUTH_JWT_SECRET,

@@ -1,21 +1,9 @@
 import { NextPage } from 'next';
-import Head from 'next/head';
 
-export interface IGuestLayout {
-    title: string;
-}
+export interface IGuestLayout {}
 
-const GuestLayout: NextPage<IGuestLayout> = (props) => {
-    const { children, title } = props;
-    return (
-        <>
-            <Head>
-                <title>{title}</title>
-            </Head>
-
-            {children}
-        </>
-    );
+const GuestLayout: NextPage<IGuestLayout> = ({ children }) => {
+    return <>{children}</>;
 };
 
 export default GuestLayout;
